@@ -2,6 +2,7 @@ import discord
 from discord.ext.commands import Bot
 from discord.ext import commands
 import random
+import os
 
 bot = discord.Client()
 bot_prefix="!"
@@ -45,4 +46,4 @@ async def s (ctx):
 
 
 
-bot.run("NDUyNDkyODAzMzQ0MzAyMDk5.DfSXfg.BMo1gUOmU1BOjUubIuxb8r1YpCA")
+bot.run(os.environ.get('token'))
