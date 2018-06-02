@@ -1,6 +1,7 @@
 import discord
 from discord.ext.commands import Bot
 from discord.ext import commands
+import random
 
 bot = discord.Client()
 bot_prefix="!"
@@ -19,4 +20,29 @@ async def on_ready() :
 async def yirmi15(ctx) :
     await bot.say("Ben bot 2318'im!")
 
-bot.run("NDA5MzU2MTM1NDgxNzM3MjE2.DVda7g.6MWVKoLxwhNvrFfB672H48xQQCw")
+@bot.command(pass_context=True)
+async def a(ctx, member:discord.Member):
+    urll = ["https://media1.tenor.com/images/49a21e182fcdfb3e96cc9d9421f8ee3f/tenor.gif" , 
+            "https://media1.tenor.com/images/b0de026a12e20137a654b5e2e65e2aed/tenor.gif" ,
+           "https://78.media.tumblr.com/680b69563aceba3df48b4483d007bce3/tumblr_mxre7hEX4h1sc1kfto1_500.gif"]
+    embed = discord.Embed(title=ctx.message.author.name + " sana sarılıyor " + member.name )
+    embed.set_image(url=random.choice(urll))
+    await bot.say(embed=embed)
+
+@bot.command(pass_context=True)
+async def sil (ctx, number):
+    mgs = []
+    number = int(number)
+    async for x in bot.logs_from(ctx.message.channel, limit=number):
+        mgs.append(x)
+    await bot.delete_messages(mgs)
+
+@bot.command(pass_context=True)
+async def s (ctx):
+    mgs = ctx.message.content.split("1")
+    await bot.delete_message(ctx.message)
+    await bot.send_message(ctx.message.channel , mgs)
+
+
+
+bot.run("NDUyNDkyODAzMzQ0MzAyMDk5.DfSXfg.BMo1gUOmU1BOjUubIuxb8r1YpCA")
